@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+    {%for x in listings %}
+    
+        <div style="border: 1px solid rgba(0, 0, 0, 0.125);">
+            <div class = " row position-relative" >
+                <div class = "col-md-3" >
+                    <img src ="{{x.url}}" class = "img-fluid " style="max-height: 200px; " >
+                </div>
+                <div class ="col-md" >
+                    <h5>{{x.item_name}}</h5>
+                    <p>{{x.description}}</p>
+                    <strong>Price: &nbsp;$</strong>{{x.price}}
+                    <a href="{% url 'show_item' x.id %}" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+        
+    {% endfor %}
+    <!-- <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card with stretched link</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>
+        </div>
+      </div> -->
+    <!-- {%for x in bids %}
+        <p>{{x}}</p>
+    {% endfor %} -->
+{% endblock %}
