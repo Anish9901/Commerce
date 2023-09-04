@@ -3,15 +3,16 @@ on:
   release:
     types: [published]
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout branch @${GITHUB_REF_NAME}
-      uses: actions/checkout@v3
-      with:
-        ref: ${GITHUB_REF_NAME}
-    - name: Create artifact
-      run: zip -r source.zip . -x '*.git*'
-    - name: Upload artifact to release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: source.zip
+  static-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch @${GITHUB_REF_NAME}
+        uses: actions/checkout@v3
+        with:
+          ref: ${GITHUB_REF_NAME}
+      - name: Create artifact
+        run: zip -r source.zip . -x '*.git*'
+      - name: Upload artifact to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: source.zip
