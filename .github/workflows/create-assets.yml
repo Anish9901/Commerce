@@ -2,11 +2,14 @@ name: Create static assets
 on:
   release:
     types: [published]
+  push:
 jobs:
   static-assets:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout branch @${GITHUB_REF_NAME}
+      - name: Echo envs
+        run: echo "${GITHUB_REF_NAME}, ${{github}}, ${GITHUB_REF}"
+      - name: Checkout branch
         uses: actions/checkout@v3
         with:
           ref: ${GITHUB_REF_NAME}
