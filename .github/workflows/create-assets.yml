@@ -3,6 +3,8 @@ on:
   release:
     types: [published]
   push:
+    branches:
+      - 'master'
 jobs:
   static-assets:
     runs-on: ubuntu-latest
