@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo envs
-        run: echo "${GITHUB_REF_NAME}, ${{github}}, ${GITHUB_REF}"
+        run: echo "${GITHUB_REF_NAME}, ${{github.ref_name}}, ${GITHUB_REF}"
       - name: Checkout branch
         uses: actions/checkout@v3
         with:
-          ref: ${GITHUB_REF_NAME}
+          ref: ${{github.ref_name}}
       - name: Create artifact
         run: zip -r source.zip . -x '*.git*'
       - name: Upload artifact to release
