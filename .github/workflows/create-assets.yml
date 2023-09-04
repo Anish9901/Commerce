@@ -1,10 +1,7 @@
 name: Create static assets
 on:
   release:
-    types: [published]
-  push:
-    branches:
-      - 'master'
+    types: [created, edited]
 jobs:
   static-assets:
     runs-on: ubuntu-latest
