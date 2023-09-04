@@ -13,5 +13,5 @@ jobs:
       run: zip -r source.zip . -x '*.git*'
     - name: Upload artifact to release
       uses: softprops/action-gh-release@v1
-        with:
-          files: source.zip
+      with:
+        files: source.zip
