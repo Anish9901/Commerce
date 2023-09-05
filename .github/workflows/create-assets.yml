@@ -1,20 +1,20 @@
 name: Create static assets
 on:
   release:
-    types: [created, edited]
+    types: [published, edited]
 jobs:
   static-assets:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo envs
-        run: echo "${GITHUB_REF_NAME}, ${{github.ref_name}}, ${GITHUB_REF}"
       - name: Checkout branch @${{github.ref_name}}
         uses: actions/checkout@v3
         with:
           ref: ${{github.ref_name}}
+      - name: Run collectstatic
+        run: python manage.py collectstatic
       - name: Create artifact
-        run: zip -r source.zip . -x '*.git*'
+        run: zip -r Commerce-v${{github.ref_name}}.zip static/ -x '*.git*'
       - name: Upload artifact to release
         uses: softprops/action-gh-release@v1
         with:
-          files: source.zip
+          files: Commerce-v${{github.ref_name}}.zip
