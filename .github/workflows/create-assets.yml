@@ -20,7 +20,7 @@ jobs:
       - name: Run collectstatic
         run: |
           pip install -r requirements.txt
-          python manage.py collectstatic
+          python manage.py collectstatic --noinput
       - name: Create artifact
         run: zip -r Commerce-v${{github.ref_name}}.zip static/ -x '*.git*'
       - name: Upload artifact to release
